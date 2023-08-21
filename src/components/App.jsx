@@ -29,6 +29,22 @@ class App extends Component {
   }
 
   addContact = newContact => {
+    const { name, number } = newContact;
+
+    if (
+      this.state.contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      alert('This name is already in contacts');
+      return;
+    }
+
+    if (this.state.contacts.some(contact => contact.number === number)) {
+      alert('This number is already in contacts');
+      return;
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
